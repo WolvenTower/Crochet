@@ -1,7 +1,8 @@
 *.jpg
-*.cvs
+*.csv
 *.png
 uploads/
 output/
 static/
 __pycache__
+static/images/
