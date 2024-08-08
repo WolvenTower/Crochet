@@ -12,6 +12,7 @@ def get_image_resolution(image_path):
         return None
 
 def count_touching_pixels(image_path, new_width=None, output_file="pixel_data.csv"):
+    print(new_width)
     # Load image from file path
     image = Image.open(image_path)
     
@@ -23,12 +24,12 @@ def count_touching_pixels(image_path, new_width=None, output_file="pixel_data.cs
         new_height = int(new_width * aspect_ratio)
         
         # Resize the image to the new dimensions
-        image_resized = image.resize((new_width, new_height))
+        image = image.resize((new_width, new_height))
         
-        # Convert image to grayscale
-        image_bw = image_resized.convert("L")
     else:
-        # Convert original image to grayscale
+        pass
+   
+    # Convert original image to grayscale
         image_bw = image.convert("L")
 
     # Get pixel data

@@ -7,7 +7,12 @@
 <body>
     <h1>Upload Image</h1>
     <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file">
+        <label for="file">Choose an image:</label>
+        <input type="file" name="file" accept=".png,.jpg"><br><br>
+        
+        <label for="new_width">New Width (leave blank for no change):</label>
+        <input type="number" name="new_width" placeholder="None"><br><br>
+        
         <button type="submit">Upload</button>
     </form>
 </body>

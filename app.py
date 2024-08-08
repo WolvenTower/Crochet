@@ -26,6 +26,7 @@ def index():
             return redirect(request.url)
         
         file = request.files['file']
+        new_width = request.form.get('new_width')  # Get the new_width value from the form
         
         if file.filename == '':
             flash('No selected file')
@@ -36,10 +37,19 @@ def index():
             filename = secure_filename(file.filename)
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(filepath)
+            
             csv_filename = filename.rsplit('.', 1)[0] + '.csv'  # Change file extension to .csv
             csv_filepath = os.path.join(app.config['OUTPUT_FOLDER'], csv_filename)
-            count_touching_pixels(filepath, output_file=csv_filepath)
+            
+            # Check if new_width is provided; if empty, set it to None
+            if new_width:
+                new_width = int(new_width)
+            else:
+                new_width = None
+
+            count_touching_pixels(filepath, new_width, output_file=csv_filepath)
             create_pixel_art(csv_filepath, output_image)
+            
             return render_template('result.html', result=output_image, result_csv=csv_filename)
     
     return render_template('index.html')
