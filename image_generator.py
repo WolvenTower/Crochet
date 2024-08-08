@@ -15,7 +15,7 @@ def create_pixel_art(csv_filepath, output_image):
         "Black": "#000000",
         "White": "#FFFFFF",
         "Gray": "#808080",
-        "Red": "#FF0000"
+        # "Red": "#FF0000"
     }
 
     # Initialize image size and pixel size

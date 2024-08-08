@@ -50,10 +50,23 @@ def count_touching_pixels(image_path, new_width=None, output_file="pixel_data.cs
             for x in range(width):
                 pixel_value = pixel_data[y * width + x]
                 pixel_brightness = 0.2126 * pixel_value[0] + 0.7152 * pixel_value[1] + 0.0722 * pixel_value[2]
+
+                # This is a test but of code for adding color into the image. Currently has red. Uncomment this and recomment the next if statment if you want to mess with color
+
                 # Check if pixel is red
-                if pixel_value[0] > pixel_value[1] + pixel_value[2]:
-                    pixel_color = 'red'
-                elif pixel_brightness < 100:
+                
+                ## if pixel_value[0] > pixel_value[1] + pixel_value[2]:
+                #     pixel_color = 'red'
+                # elif pixel_brightness < 100:
+                #     pixel_color = 'black'
+                # elif pixel_brightness > 200:
+                #     pixel_color = 'white'
+                # else:
+                #     pixel_color = 'gray'
+
+                # Default grayscale. Can change values to mess with range
+                
+                if pixel_brightness < 100:
                     pixel_color = 'black'
                 elif pixel_brightness > 200:
                     pixel_color = 'white'
