@@ -32,7 +32,7 @@ def index():
             return redirect(request.url)
         
         if file:
-            output_image="app/static/images/pixel_art.png"
+            output_image="static/images/pixel_art.png"
             filename = secure_filename(file.filename)
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(filepath)

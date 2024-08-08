@@ -68,7 +68,7 @@ def create_pixel_art(csv_filepath, output_image):
 
 if __name__ == "__main__":
     csv_filepath = "pixel_data.csv"  # Input CSV file
-    output_image = "pixel_art.png"  # Output image file
+    output_image = "static\images\pixel_art.png"  # Output image file
     create_pixel_art(csv_filepath, output_image)
     im = Image.open(output_image)
     im.show()
