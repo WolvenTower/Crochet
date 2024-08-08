@@ -11,93 +11,87 @@ def get_image_resolution(image_path):
         print("Error:", e)
         return None
 
-def count_touching_pixels(image_path, new_width=None, output_file="pixel_data.csv"):
-    print(new_width)
-    # Load image from file path
-    image = Image.open(image_path)
+#This section if a test for adding color to the prosses
+
+# def count_touching_pixels(image_path, new_width=None, output_file="pixel_data.csv"):
+#     print(new_width)
+#     # Load image from file path
+#     image = Image.open(image_path)
     
-    # Check if resizing is requested
-    if new_width is not None:
-        # Calculate height while maintaining aspect ratio
-        original_width, original_height = image.size
-        aspect_ratio = original_height / original_width
-        new_height = int(new_width * aspect_ratio)
+#     # Check if resizing is requested
+#     if new_width is not None:
+#         # Calculate height while maintaining aspect ratio
+#         original_width, original_height = image.size
+#         aspect_ratio = original_height / original_width
+#         new_height = int(new_width * aspect_ratio)
         
-        # Resize the image to the new dimensions
-        image = image.resize((new_width, new_height))
+#         # Resize the image to the new dimensions
+#         image = image.resize((new_width, new_height))
         
-    else:
-        pass
+#     else:
+#         pass
    
-    # Convert original image to grayscale
-        image_bw = image.convert("L")
+#     # Convert original image to grayscale
+#         image_bw = image.convert("L")
 
-    # Get pixel data
-    pixel_data = list(image.getdata())
-    width, height = image.size
+#     # Get pixel data
+#     pixel_data = list(image.getdata())
+#     width, height = image.size
     
-    # Initialize variables to store counts
-    current_count = 0
-    current_color = None
-    total_pixels_in_row = 0
+#     # Initialize variables to store counts
+#     current_count = 0
+#     current_color = None
+#     total_pixels_in_row = 0
     
-    # Open output file for writing
-    with open(output_file, 'w', newline='') as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerow(['Color', 'Count'])
+#     # Open output file for writing
+#     with open(output_file, 'w', newline='') as csvfile:
+#         writer = csv.writer(csvfile)
+#         writer.writerow(['Color', 'Count'])
         
-        # Loop through each pixel
-        for y in range(height):
-            for x in range(width):
-                pixel_value = pixel_data[y * width + x]
-                pixel_brightness = 0.2126 * pixel_value[0] + 0.7152 * pixel_value[1] + 0.0722 * pixel_value[2]
+#         # Loop through each pixel
+#         for y in range(height):
+#             for x in range(width):
+#                 pixel_value = pixel_data[y * width + x]
+#                 pixel_brightness = 0.2126 * pixel_value[0] + 0.7152 * pixel_value[1] + 0.0722 * pixel_value[2]
 
-                # This is a test but of code for adding color into the image. Currently has red. Uncomment this and recomment the next if statment if you want to mess with color
+                
+#                 # Check if pixel is red uncomment if you want to add color
+                
+#                 if pixel_value[0] > pixel_value[1] + pixel_value[2]:
+#                     pixel_color = 'red'
+#                 elif pixel_brightness < 100:
+#                     pixel_color = 'black'
+#                 elif pixel_brightness > 200:
+#                     pixel_color = 'white'
+#                 else:
+#                     pixel_color = 'gray'
 
-                # Check if pixel is red
                 
-                ## if pixel_value[0] > pixel_value[1] + pixel_value[2]:
-                #     pixel_color = 'red'
-                # elif pixel_brightness < 100:
-                #     pixel_color = 'black'
-                # elif pixel_brightness > 200:
-                #     pixel_color = 'white'
-                # else:
-                #     pixel_color = 'gray'
-
-                # Default grayscale. Can change values to mess with range
-                
-                if pixel_brightness < 100:
-                    pixel_color = 'black'
-                elif pixel_brightness > 200:
-                    pixel_color = 'white'
-                else:
-                    pixel_color = 'gray'
-                
-                # If it's the first pixel or pixel color changed, write the count
-                if current_color is None:
-                    current_color = pixel_color
-                    current_count = 1
-                elif pixel_color != current_color:
-                    writer.writerow([current_color.capitalize(), current_count])
-                    current_color = pixel_color
-                    current_count = 1
-                else:
-                    current_count += 1
+#                 # If it's the first pixel or pixel color changed, write the count
+#                 if current_color is None:
+#                     current_color = pixel_color
+#                     current_count = 1
+#                 elif pixel_color != current_color:
+#                     writer.writerow([current_color.capitalize(), current_count])
+#                     current_color = pixel_color
+#                     current_count = 1
+#                 else:
+#                     current_count += 1
                     
-                total_pixels_in_row += 1
+#                 total_pixels_in_row += 1
             
-            # Write the count for the last color in the row
-            writer.writerow([current_color.capitalize(), current_count])
-            writer.writerow(['End of Row - Total Pixels', total_pixels_in_row])
+#             # Write the count for the last color in the row
+#             writer.writerow([current_color.capitalize(), current_count])
+#             writer.writerow(['End of Row - Total Pixels', total_pixels_in_row])
             
-            # Reset variables for the next row
-            current_color = None
-            current_count = 0
-            total_pixels_in_row = 0
+#             # Reset variables for the next row
+#             current_color = None
+#             current_count = 0
+#             total_pixels_in_row = 0
 
 
-"""
+# Default Grayscale
+
 def count_touching_pixels(image_path, new_width=None, output_file="pixel_data.csv"):
     # Load image from file path
     image = Image.open(image_path)
@@ -164,7 +158,7 @@ def count_touching_pixels(image_path, new_width=None, output_file="pixel_data.cs
             current_color = None
             current_count = 0
             total_pixels_in_row = 0
-            """
+            
 
 if __name__ == "__main__":
     image_path = input("Enter the path to the image file: ")
