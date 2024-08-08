@@ -50,6 +50,9 @@ def index():
             count_touching_pixels(filepath, new_width, output_file=csv_filepath)
             create_pixel_art(csv_filepath, output_image)
             
+            # Delete the uploaded image file after processing
+            os.remove(filepath)
+
             return render_template('result.html', result=output_image, result_csv=csv_filename)
     
     return render_template('index.html')
