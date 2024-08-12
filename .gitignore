@@ -3,7 +3,7 @@
 *.png
 uploads/
 output/
-static/
+static/images
 __pycache__
 static/images/
 images/
